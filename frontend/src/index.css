@@ -2,10 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: 'Nunito Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer-base {
+  :root {
+    --dark-blue-elements: 209, 23%, 22%;
+    --very-darkblue-background: 207, 26%, 17%;
+    --very-dark-blue-text: 200, 15%, 8%;
+    --dark-gray-input: 0, 0%, 52%;
+    --very-light-gray-background: 0, 0%, 98%;
+  }
 }
 
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: hsl(0, 0%, 93%);
+}
