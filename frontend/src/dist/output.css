@@ -684,11 +684,6 @@ video {
   background-color: hsl(--var(--dark-blue-elements) / var(--tw-bg-opacity));
 }
 
-.bg-dark-gray-input {
-  --tw-bg-opacity: 1;
-  background-color: hsl(--var(--dark-gray-input) / var(--tw-bg-opacity));
-}
-
 .bg-opacity-20 {
   --tw-bg-opacity: 0.2;
 }

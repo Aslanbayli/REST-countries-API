@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from "./components/Navbar";
-import CountryCard from "./components/CountryCard";
+import CountryCards from "./components/CountryCards";
 import Dropdown from "./components/Dropdown";
 import SearchBox from './components/SearchBox';
 
@@ -12,7 +12,7 @@ function App() {
         <SearchBox />
         <Dropdown />
       </div>
-      <CountryCard />
+      <CountryCards />
     </div>
   );
 }
