@@ -5,7 +5,7 @@ function CountryCards(props: any) {
     const [countries, setCountries] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://restcountries.com/v3.1/name/${props.input}`)
+        axios.get(`https://restcountries.com/v3.1/all`)
             .then(res => {
                 console.log(res.data);
                 setCountries(res.data);
@@ -13,14 +13,14 @@ function CountryCards(props: any) {
             .catch(err => {
                 console.log(err);
             })
-    }, [props.input]);
+    }, []);
 
     return (
         <div>
             <ul className="flex justify-around items-center flex-wrap p-[10px]">
                 {
                     countries.map((country: any) => 
-                        <li className="m-[30px]" key={country.cca2} style={{height: "300px", border: "solid 1px black", background: "white", borderRadius: "5px"}}>
+                        <li className="m-[40px] bg-white" key={country.cca2}>
                             <img src={country.flags.png} alt="flag" />
                             <p>{country.name.common}</p>
                         </li>

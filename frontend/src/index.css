@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer-base {
+/* @layer-base {
   :root {
     --dark-blue-elements: 209, 23%, 22%;
     --very-darkblue-background: 207, 26%, 17%;
@@ -10,7 +10,7 @@
     --dark-gray-input: 0, 0%, 52%;
     --very-light-gray-background: 0, 0%, 98%;
   }
-}
+} */
 
 body {
   margin: 0;
