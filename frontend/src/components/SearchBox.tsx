@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import CountryCards from "./CountryCards";
 
 function SearchBox() {
     const [input, setInput] = useState("united");
@@ -10,7 +9,6 @@ function SearchBox() {
                 className="w-[350px] rounded-md p-[10px] pl-[20px]  shadow-[0px_2px_4px_0px_rgba(0,0,0,0.2)]" 
                 type="text" placeholder="Search for a country...">
             </input>
-            <CountryCards input={input}/>
         </div>
     );
 }

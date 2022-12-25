@@ -1,18 +1,18 @@
 import React from 'react';
 import Navbar from "./components/Navbar";
-import CountryCards from "./components/CountryCards";
-import Dropdown from "./components/Dropdown";
 import SearchBox from './components/SearchBox';
+import Dropdown from "./components/Dropdown";
+import Grid from "./components/Grid";
 
 function App() {
   return (
     <div className="bg-dark-blue-elements">
       <Navbar />
-      <div className="flex justify-between py-[30px] px-[100px]">
-        <SearchBox />
-        <Dropdown />
+      <div className="flex justify-between py-[40px] px-[80px]">
+          <SearchBox />
+          <Dropdown />
       </div>
-      <CountryCards />
+      <Grid />
     </div>
   );
 }
