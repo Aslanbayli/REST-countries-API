@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from "./components/Navbar";
-import SearchBox from './components/SearchBox';
-import Dropdown from "./components/Dropdown";
-import Grid from "./components/Grid";
 import Logic from "./hooks/Logic";
 
 function App() {
+  const [isDarkMode, setDarkMode] = useState(false);
+
+  const toggleMode = () => {
+    setDarkMode(!isDarkMode);
+  };
+
   return (
-    <div className="bg-dark-blue-elements">
-      <Navbar />
-      <Logic/>
+    <div className={isDarkMode ? "dark" : "light"}>
+      <div className="bg-[hsl(0, 0%, 85%)] dark:bg-very-darkblue-background">
+        <Navbar onClick={toggleMode}/>
+        <Logic/>
+      </div>
     </div>
   );
 }

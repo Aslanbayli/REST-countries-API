@@ -11,7 +11,7 @@ function Logic() {
     useEffect(() => {
         const getData = setTimeout(() => {
             makeAPICall(countryName);
-        }, 1000);
+        }, 300);
 
         return () => clearTimeout(getData);
     }, [countryName]);
@@ -30,7 +30,7 @@ function Logic() {
 
         }
         return "https://restcountries.com/v3.1/all";
-    }
+    };
 
     const makeAPICall = (countryName: any) => {
         let url: string = checkValue(countryName);
@@ -45,8 +45,7 @@ function Logic() {
             .catch(err => {
                 console.log(err);
             });
-  
-    }
+    };
 
     return (
         <div>
