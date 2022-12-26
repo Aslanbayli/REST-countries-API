@@ -3,18 +3,10 @@ import axios from "axios";
 
 function CountryCard(props: any) {
     return (
-        <div>
-            <ul className="flex justify-around items-center flex-wrap p-[10px]">
-                {
-                    props.map((country: any) => 
-                        <li className="m-[40px] bg-white" key={country.cca2}>
-                            <img src={country.flags.png} alt="flag" />
-                            <p>{country.name.common}</p>
-                        </li>
-                    )
-                }
-            </ul>
-        </div>
+        <li className="m-[40px] bg-white" key={props.cca2}>
+            <img src={props.flags.png} alt="flag" />
+            <p>{props.name.common}</p>
+        </li>
     );
 }
 
