@@ -7,11 +7,18 @@ function App() {
 
   const toggleMode = () => {
     setDarkMode(!isDarkMode);
+
+    // Toggle background color of the body element
+    if (document.body.classList.contains("bg-very-darkblue-background")) {
+      document.body.classList.remove("bg-very-darkblue-background");
+    } else {
+      document.body.classList.add("bg-very-darkblue-background");
+    }
   };
 
   return (
     <div className={isDarkMode ? "dark" : "light"}>
-      <div className="bg-[hsl(0, 0%, 85%)] dark:bg-very-darkblue-background">
+      <div className="dark:bg-very-darkblue-background h-[100%]">
         <Navbar onClick={toggleMode}/>
         <Logic/>
       </div>

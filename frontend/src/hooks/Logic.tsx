@@ -38,9 +38,6 @@ function Logic() {
         axios.get(url)
             .then(res => {
                 setCountries(res.data);
-                console.log(url);
-                // console.log(res.data);
-                console.log(countries);
             })
             .catch(err => {
                 console.log(err);
