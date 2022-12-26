@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
-function CountryCard(props: any) {
+function CountryCard({country}: any) {
     return (
-        <li className="m-[40px] bg-white" key={props.cca2}>
-            <img src={props.flags.png} alt="flag" />
-            <p>{props.name.common}</p>
+        <li className="m-[40px] bg-white text-black" key={country.cca2}>
+            <img src={country.flags.png} alt="flag" />
+            <p>{country.name.common}</p>
         </li>
     );
 }
