@@ -5,7 +5,6 @@ import Dropdown from "../components/Dropdown";
 import Grid from "../components/Grid";
 
 function Logic() {
-    // State and setter 
     const [countryName, setCountryName] = useState("");
 
     useEffect(() => {
@@ -16,22 +15,28 @@ function Logic() {
         return () => clearTimeout(getData);
     }, [countryName]);
 
-    const checkValue = (v: string) => {
-        if (v === "") {
-            return "https://restcountries.com/v3.1/all";
+    const checkValue = (value: any) => {      
+        if (typeof value == "object") {
+            if (value.name === "") {
+                return "https://restcountries.com/v3.1/all";
+            }
+            return `https://restcountries.com/v3.1/region/${value.name}`;
         } else {
-            return `https://restcountries.com/v3.1/name/${v}`;
+            if (value === "") {
+                return "https://restcountries.com/v3.1/all";
+            }
+            return `https://restcountries.com/v3.1/name/${value}`;
 
         }
     }
 
-    const makeAPICall = (countryName: string) => {
-        let input = checkValue(countryName);
+    const makeAPICall = (countryName: any) => {
+        let url = checkValue(countryName);
 
-        axios.get(input)
+        axios.get(url)
             .then(res => {
                 console.log(res.data);
-                console.log(input);
+                console.log(url);
             })
             .catch(err => {
                 console.log(err);
@@ -42,7 +47,7 @@ function Logic() {
     return (
         <div className="flex justify-between py-[40px] px-[80px]">
             <SearchBox value={countryName} onChange={(v: string) => {setCountryName(v)}}/>
-            <Dropdown />
+            <Dropdown value={countryName} onChange={(v: string) => {setCountryName(v)}}/>
         </div>
     );
 }

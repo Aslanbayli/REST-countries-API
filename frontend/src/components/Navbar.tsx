@@ -9,8 +9,8 @@ function CountryCard() {
             <p className="font-nunito font-[900] text-black" >Where in the world?</p>
             <div className="flex justify-center">
                 <div className="bg-moon-light 
-                bg-no-repeat bg-contain w-[24px] 
-                h-[24px] mr-[10px]"></div>
+                bg-no-repeat bg-contain w-[18px] 
+                h-[18px] mr-[10px] mt-[2px]"></div>
                 <p className="font-nunito font-[600]">Dark Mode</p>
             </div>
         </div>
