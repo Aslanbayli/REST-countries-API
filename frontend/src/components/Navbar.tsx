@@ -6,11 +6,11 @@ function Navbar({onClick}: any) {
             py-[20px] px-[100px] bg-white
             shadow-[0px_2px_4px_0px_rgba(0,0,0,0.2)]">
             <p className="font-nunito font-[900] text-black dark:text-white" >Where in the world?</p>
-            <div className="flex justify-center">
-                <a className="bg-moon-light dark:invert
+            <div className="flex justify-center hover:cursor-pointer" onClick={(e: any) => onClick(e)}>
+                <div className="bg-moon-light dark:invert
                 bg-no-repeat bg-contain w-[18px] 
-                h-[18px] mr-[10px] mt-[2px] hover:cursor-pointer" onClick={(e: any) => onClick(e)}></a>
-                <a className="font-nunito font-[600] hover:cursor-pointer dark:text-white" onClick={(e: any) => onClick(e)}>Dark Mode</a>
+                h-[18px] mr-[10px] mt-[2px]" ></div>
+                <div className="font-nunito font-[600] dark:text-white" >Dark Mode</div>
             </div>
         </div>
     );

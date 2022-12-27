@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from "./components/Navbar";
 import Logic from "./hooks/Logic";
+import { Route, Routes, Link } from "react-router-dom"
+import CountryCard from './components/CountryCard';
 
 function App() {
   const [isDarkMode, setDarkMode] = useState(false);
@@ -17,12 +19,17 @@ function App() {
   };
 
   return (
+    <>
     <div className={isDarkMode ? "dark" : "light"}>
       <div className="dark:bg-very-darkblue-background h-[100%]">
-        <Navbar onClick={toggleMode}/>
-        <Logic/>
+        <Routes>
+          <Route path="/" element={[<Navbar onClick={toggleMode}/>, <Logic />]} />
+          <Route path=":countryName" element={<CountryCard />} />
+        </Routes>
       </div>
     </div>
+ 
+    </>
   );
 }
 
