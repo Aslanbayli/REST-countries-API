@@ -2,21 +2,20 @@ import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 
-const regions = [
-  { name: 'Africa', isOption: true},
-  { name: 'America' },
-  { name: 'Asia' },
-  { name: 'Europe' },
-  { name: 'Oceania' },
-]
+type DropwdownProps = {
+  value: string,
+  onChange: (v: string) => void
+}
 
-function Dropdown({value, onChange}: any) {
+const regions = ["All Regions", "Africa", "America", "Asia", "Europe", "Oceania"]
+
+function Dropdown({value, onChange}: DropwdownProps) {
   return (
-    <div className="w-[15%]">
-      <Listbox value={value} onChange={(e: any) => onChange(e)}>
+    <div className="w-52">
+      <Listbox defaultValue={regions[0]} onChange={(e: string) => onChange(e)}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white dark:bg-dark-blue-elements dark:text-white py-4 pl-7 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-            <span className="block truncate">Filter By Region</span>
+            <span className="block truncate">{value}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronDownIcon
                 className="h-5 w-5 text-gray-400"
@@ -39,6 +38,7 @@ function Dropdown({value, onChange}: any) {
                       active ? 'bg-amber-100 text-amber-900' : 'text-gray-900 dark:text-white'
                     }`
                   }
+                  
                   value={region}
                 >
                   {({ selected }) => (
@@ -48,7 +48,7 @@ function Dropdown({value, onChange}: any) {
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
-                        {region.name}
+                        {region}
                       </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
