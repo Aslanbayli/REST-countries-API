@@ -5,7 +5,7 @@ type SearchBoxProps = {
     onChange: (v: string) => void
 }
 
-function SearchBox({value, onChange}: SearchBoxProps) {
+export default function SearchBox({value, onChange}: SearchBoxProps) {
     return (
         <div>
             <div className="bg-search 
@@ -19,5 +19,3 @@ function SearchBox({value, onChange}: SearchBoxProps) {
         </div>
     );
 }
-
-export default SearchBox;

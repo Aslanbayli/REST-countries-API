@@ -3,8 +3,10 @@ import axios from "axios";
 import SearchBox from "./SearchBox";
 import Dropdown from "./Dropdown";
 import CountryGrid from "./CountryGrid";
+import Layout from "./Layout";
+import { CountriesContext } from "../context/CountriesContext";
 
-function Countries() {
+export default function Countries() {
     const [countryName, setCountryName] = useState("");
     const [region, setRegion] = useState("Filter By Region");
     const [countries, setCountries] = useState([]);
@@ -56,7 +58,6 @@ function Countries() {
         axios.get("https://restcountries.com/v3.1/all")
         .then(res => {
             setCountries(res.data);
-            console.log(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -69,14 +70,16 @@ function Countries() {
     }
 
     return (
-        <div>
-            <div className="flex justify-between py-[40px] px-[80px]" onLoadStart={getAllCountries}>
-                <SearchBox value={countryName} onChange={handleSearchBoxChange}/>
-                <Dropdown value={region} onChange={handleDropdownChange}/>
+        <Layout>
+            <div>
+                <div className="flex justify-between py-[40px] px-[80px]" onLoadStart={getAllCountries}>
+                    <SearchBox value={countryName} onChange={handleSearchBoxChange}/>
+                    <Dropdown value={region} onChange={handleDropdownChange}/>
+                </div>
+                <CountriesContext.Provider value={{countries}}>
+                    <CountryGrid />
+                </CountriesContext.Provider>
             </div>
-            <CountryGrid countries={countries}/>
-        </div>
+        </Layout>
     );
 }
-
-export default Countries;

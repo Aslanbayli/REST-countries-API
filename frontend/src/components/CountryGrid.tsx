@@ -1,5 +1,6 @@
-import React from "react";
-import { useNavigate} from 'react-router-dom';
+import { useContext } from "react";
+import { Link } from 'react-router-dom';
+import { CountriesContext } from "../context/CountriesContext";
 
 type Country = {
     cca3: string,
@@ -10,8 +11,8 @@ type Country = {
     capital: string
 }
 
-export default function CountryGrid({countries}: any) {
-    const navigate = useNavigate();
+export default function CountryGrid() {
+    const { countries } = useContext(CountriesContext);
 
     return (
         <div>
@@ -19,7 +20,7 @@ export default function CountryGrid({countries}: any) {
                 {
                     countries.map((country: Country) => {
                         return (    
-                            <li key={country.cca3} onClick={() => navigate(country.name.common, {state: country})}>
+                            <Link to={country.name.common} state={country} key={country.cca3}>
                                 <div className="m-[40px] bg-white dark:bg-dark-blue-elements text-black dark:text-white rounded-md shadow-[0px_2px_4px_0px_rgba(0,0,0,0.2)] pb-5 ">
                                     <img src={country.flags.png} alt="flag" className="rounded-t-md w-[100%] h-[100%] object-cover"/>
                                     <div className="py-7 pl-7 font-nunito font-[300]">
@@ -29,7 +30,7 @@ export default function CountryGrid({countries}: any) {
                                         <p><span className="font-[600]">Capital: </span>{country.capital ? country.capital[0] : "unknown" }</p> 
                                     </div>
                                 </div>
-                            </li>
+                            </Link>
                         );
                     })
                 }

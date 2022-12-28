@@ -9,9 +9,9 @@ type DropwdownProps = {
 
 const regions = ["All Regions", "Africa", "America", "Asia", "Europe", "Oceania"]
 
-function Dropdown({value, onChange}: DropwdownProps) {
+export default function Dropdown({value, onChange}: DropwdownProps) {
   return (
-    <div className="w-52">
+    <div className="w-52 font-[600]">
       <Listbox defaultValue={regions[0]} onChange={(e: string) => onChange(e)}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white dark:bg-dark-blue-elements dark:text-white py-4 pl-7 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
@@ -45,7 +45,7 @@ function Dropdown({value, onChange}: DropwdownProps) {
                     <>
                       <span
                         className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
+                          selected ? 'font-[700]' : 'font-[600]'
                         }`}
                       >
                         {region}
@@ -66,5 +66,3 @@ function Dropdown({value, onChange}: DropwdownProps) {
     </div>
   )
 }
-
-export default Dropdown;

@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import Navbar from "./components/Navbar";
-import Countries from "./components/Countries";
+import { useState } from 'react';
 import { Route, Routes } from "react-router-dom"
-import CountryCard from './components/CountryCard';
+import CountryPage from './components/CountryPage';
+import Countries from './components/Countries';
+import { HeaderContext } from './context/HeaderContext';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleMode = () => {
+  const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
   };
 
   return (
     <>
-    <div className={isDarkMode ? "dark" : "light"}>
+    <div className={isDarkMode ? "dark" : "light bg-body-background"}>
       <div className="dark:bg-very-darkblue-background h-full min-h-screen">
-        <Routes>
-          <Route path="/" element={[<Navbar onClick={toggleMode}/>, <Countries />]} />
-          <Route path=":countryName" element={<CountryCard />} />
-        </Routes>
+        <HeaderContext.Provider value={{ toggleDarkMode }}>
+          <Routes>
+              <Route path="/" element={<Countries />} />
+            <Route path=":countryName" element={<CountryPage />} />
+          </Routes>
+        </HeaderContext.Provider>
       </div>
     </div>
- 
     </>
   );
 }

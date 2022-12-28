@@ -13,15 +13,15 @@ module.exports = {
         'very-light-gray-background': "hsl(0, 0%, 98%)",
         'body-background': "hsl(0, 0%, 90%)"
       },
-      fontFamily: {
-        nunito: ['Nunito Sans', "sans-serif"]
-      },
       backgroundImage: {
         'moon-light': "url('/public/icons/moon-light.png')",
         'moon-dark': "url('/public/icons/moon-dark.png')",
         'search': "url('/public/icons/search.png')"
       },
-    }
+    },  
+    fontFamily: {
+      sans: ['Nunito Sans', "sans-serif"]
+    },
   },
   darkMode: 'class',
   plugins: [
