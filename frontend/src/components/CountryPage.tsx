@@ -1,10 +1,12 @@
 import { useLocation, Link } from "react-router-dom";
+import axios from "axios";
+import { useRef } from "react";
+
 import Layout from "./Layout";
 
 export default function CountryPage() {
     const countryData = useLocation();
     const country = countryData.state;
-    console.log(country);
 
     // Get the native language prop of country
     const nativeNameObject = country.name.nativeName
@@ -37,17 +39,42 @@ export default function CountryPage() {
     // Convert the languages array to a comma separated string
     const currencies = currenciesArray.join(", ");
 
+
+    let countryCodes: string[] = [];
+    const countryNamesObj = useRef<string[]>([]);
     
-    // country.borders ? country.borders.map((border: string) => {
-    //     <p>{border}</p> 
-    // }) :
-    // <div>None</div> 
     
+    if (country.borders) {
+        country.borders.map((border: string) => {
+            countryCodes.push(border) ;
+        });
+    }
+    
+    const fetchCountriesByCodes = (codes: string[]) => {
+        let url = "https://restcountries.com/v3.1/all";
+        if (codes.length !== 0) {
+            let tempString = "https://restcountries.com/v3.1/alpha?codes="
+            for (const code of codes) {
+                tempString += code + ",";
+            }
+            url = tempString.slice(0, -1);
+        }
+        axios.get(url)
+            .then(res => {
+                console.log(url);
+                countryNamesObj.current = res.data;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+    fetchCountriesByCodes(countryCodes);
+
   
     return (
         <Layout>
             <div>
-                <Link to="/">Back</Link>
+                <Link className="" to="/">Back</Link>
                 <img src={country.flags.png} alt="flag" />
                 <p>{country.name.common}</p>
                 <div>
@@ -59,8 +86,18 @@ export default function CountryPage() {
                     <p><span>Currencies: </span>{currencies}</p>
                     <p><span>Languages: </span>{languages}</p>
                 </div>
+                <p>Border Countries: </p>
                 <div>
-                    <p>Border Countries: </p>
+                    <>
+                        {
+                            countryNamesObj.current.map((country: any) => {
+                                console.log(country);
+                                return (
+                                    <div key={country.cca3}>{country.name.common}</div>
+                                );
+                            })
+                        }
+                    </>
                 </div>
             </div>
         </Layout>
