@@ -41,8 +41,12 @@ export default function CountryPage() {
                 currencies: Object.values(res.data[0].currencies).map((currency: any) => currency.name),
                 borders: []
             }
-            res = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${res.data[0].borders.join(",")}`)
-            country.borders = res.data.map((country: any) => country.name.common);
+            if (res.data[0].borders) {
+                res = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${res.data[0].borders.join(",")}`);
+                country.borders = res.data.map((country: any) => country.name.common);
+            } else {
+                country.borders = ["None"];
+            }
             setCountry(country);
         } catch(e) {
             console.error(e)
