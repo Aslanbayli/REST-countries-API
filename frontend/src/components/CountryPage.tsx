@@ -1,103 +1,76 @@
-import { useLocation, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 
 import Layout from "./Layout";
 
+type Country = {
+    flag: any,
+    name: string,
+    nativeName: string,
+    population: number,
+    subRegion: string,
+    capital: string,
+    topLevelDomain: string
+    languages: string[],
+    currencies: string[],
+    borders: string[]
+}
+
 export default function CountryPage() {
-    const countryData = useLocation();
-    const country = countryData.state;
+    const { cca3 } = useParams();
+    const [country, setCountry] = useState<Country | null>(null);
 
-    // Get the native language prop of country
-    const nativeNameObject = country.name.nativeName
-    const nativeLanguageObject = Object.keys(nativeNameObject)[0];
-    const nativeLanguage = nativeNameObject[nativeLanguageObject].common;
+    useEffect(() => {
+        fetchCountryByCCA3(cca3);
+        console.log(cca3);
+    }, [cca3]);
 
-    // Array for storing languages
-    let languagesArray: string[] = [];
-    // Get value of each child of Language object
-    const getLangaugeObjectValues = (obj: any) => {
-        for(let values in obj) {
-            languagesArray.push(obj[values]);
-        }   
-    };
-    // Call the function on the Languages object
-    getLangaugeObjectValues(country.languages);
-    // Convert the languages array to a comma separated string
-    const languages = languagesArray.join(", ");
-
-    // Array for storing currencies
-    let currenciesArray: string[] = [];
-    // Get value of each child of Currency object
-    const getCurencyObjectValues = (obj: any) => {
-        for(let values in obj) {
-            currenciesArray.push(obj[values].name);
-        }   
-    };
-    // Call the function on the Cuurencies object
-    getCurencyObjectValues(country.currencies);
-    // Convert the languages array to a comma separated string
-    const currencies = currenciesArray.join(", ");
-
-
-    let countryCodes: string[] = [];
-    const countryNamesObj = useRef<string[]>([]);
-    
-    
-    if (country.borders) {
-        country.borders.map((border: string) => {
-            countryCodes.push(border) ;
-        });
-    }
-    
-    const fetchCountriesByCodes = (codes: string[]) => {
-        let url = "https://restcountries.com/v3.1/all";
-        if (codes.length !== 0) {
-            let tempString = "https://restcountries.com/v3.1/alpha?codes="
-            for (const code of codes) {
-                tempString += code + ",";
+    const fetchCountryByCCA3 = async (cca3: string | undefined) => {
+        try {
+            let res = await axios.get(`https://restcountries.com/v3.1/alpha/${cca3}`);
+            const country: Country = {
+                flag: res.data[0].flags.png,
+                name: res.data[0].name.common,
+                nativeName: Object.values<any>(res.data[0].name.nativeName)[0].common,
+                population: res.data[0].population,
+                subRegion: res.data[0].subregion,
+                capital: res.data[0].capital,
+                topLevelDomain: res.data[0].tld,
+                languages: Object.values(res.data[0].languages),
+                currencies: Object.values(res.data[0].currencies).map((currency: any) => currency.name),
+                borders: []
             }
-            url = tempString.slice(0, -1);
+            res = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${res.data[0].borders.join(",")}`)
+            country.borders = res.data.map((country: any) => country.name.common);
+            setCountry(country);
+        } catch(e) {
+            console.error(e)
         }
-        axios.get(url)
-            .then(res => {
-                console.log(url);
-                countryNamesObj.current = res.data;
-            })
-            .catch(err => {
-                console.log(err);
-            });
     }
-    fetchCountriesByCodes(countryCodes);
+    
+    if (!country) {
+        return null;
+    }
 
-  
     return (
         <Layout>
             <div>
                 <Link className="" to="/">Back</Link>
-                <img src={country.flags.png} alt="flag" />
-                <p>{country.name.common}</p>
+                <img src={country.flag} alt="flag" />
+                <p>{country.name}</p>
                 <div>
-                    <p><span>Native Name: </span>{nativeLanguage}</p>
+                    <p><span>Native Name: </span>{country.nativeName}</p>
                     <p><span>Population: </span>{country.population}</p>
-                    <p><span>Sub Region: </span>{country.subregion}</p>
+                    <p><span>Sub Region: </span>{country.subRegion}</p>
                     <p><span>Capital: </span>{country.capital}</p>
-                    <p><span>Top Level Domain: </span>{country.tld}</p>
-                    <p><span>Currencies: </span>{currencies}</p>
-                    <p><span>Languages: </span>{languages}</p>
+                    <p><span>Top Level Domain: </span>{country.topLevelDomain}</p>
+                    <p><span>Currencies: </span>{country.currencies}</p>
+                    <p><span>Languages: </span>{country.languages}</p>
                 </div>
                 <p>Border Countries: </p>
                 <div>
-                    <>
-                        {
-                            countryNamesObj.current.map((country: any) => {
-                                console.log(country);
-                                return (
-                                    <div key={country.cca3}>{country.name.common}</div>
-                                );
-                            })
-                        }
-                    </>
+                    {country.borders.map((border) => <div key={border}>{border}</div>)}
                 </div>
             </div>
         </Layout>

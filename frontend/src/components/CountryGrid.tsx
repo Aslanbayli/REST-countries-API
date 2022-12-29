@@ -20,7 +20,7 @@ export default function CountryGrid() {
                 {
                     countries.map((country: Country) => {
                         return (    
-                            <Link to={country.name.common} state={country} key={country.cca3}>
+                            <Link to={country.cca3.toLowerCase()} key={country.cca3}>
                                 <div className="m-[40px] bg-white dark:bg-dark-blue-elements text-black dark:text-white rounded-md shadow-[0px_2px_4px_0px_rgba(0,0,0,0.2)] pb-5 ">
                                     <img src={country.flags.png} alt="flag" className="rounded-t-md w-[100%] h-[100%] object-cover"/>
                                     <div className="py-7 pl-7 font-nunito font-[300]">

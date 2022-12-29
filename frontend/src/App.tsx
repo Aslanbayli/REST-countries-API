@@ -17,7 +17,7 @@ function App() {
         <HeaderContext.Provider value={{ toggleDarkMode }}>
           <Routes>
               <Route path="/" element={<Countries />} />
-            <Route path=":countryName" element={<CountryPage />} />
+              <Route path=":cca3" element={<CountryPage />} />
           </Routes>
         </HeaderContext.Provider>
       </div>

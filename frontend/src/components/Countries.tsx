@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
 import SearchBox from "./SearchBox";
@@ -11,6 +11,10 @@ export default function Countries() {
     const [countryName, setCountryName] = useState("");
     const [region, setRegion] = useState("Filter By Region");
     const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        getAllCountries();
+    }, []);
 
     const fetchCountriesByName = (name: string) => {
         let url = "https://restcountries.com/v3.1/all";
@@ -69,6 +73,8 @@ export default function Countries() {
         setRegion(v);
         fetchCountriesByRegion(v);
     }
+
+
 
     return (
         <Layout>
