@@ -56,7 +56,7 @@ export default function Countries() {
             clearTimeout(timeoutRef.current);
         }
 
-        timeoutRef.current = setTimeout(() => fetchCountriesByName(v), 1000);        
+        timeoutRef.current = setTimeout(() => fetchCountriesByName(v), 200);        
     }
 
     function getAllCountries() {

@@ -23,7 +23,6 @@ export default function CountryPage() {
 
     useEffect(() => {
         fetchCountryByCCA3(cca3);
-        console.log(cca3);
     }, [cca3]);
 
     const fetchCountryByCCA3 = async (cca3: string | undefined) => {
@@ -59,22 +58,29 @@ export default function CountryPage() {
 
     return (
         <Layout>
-            <div>
-                <Link className="" to="/">Back</Link>
-                <img src={country.flag} alt="flag" />
-                <p>{country.name}</p>
-                <div>
-                    <p><span>Native Name: </span>{country.nativeName}</p>
-                    <p><span>Population: </span>{country.population}</p>
-                    <p><span>Sub Region: </span>{country.subRegion}</p>
-                    <p><span>Capital: </span>{country.capital}</p>
-                    <p><span>Top Level Domain: </span>{country.topLevelDomain}</p>
-                    <p><span>Currencies: </span>{country.currencies}</p>
-                    <p><span>Languages: </span>{country.languages}</p>
+            <div className="dark:text-white p-14 h-full">
+                <div className="table shadow-[0px_2px_4px_0px_rgba(0,0,0,0.2)] bg-white dark:bg-dark-blue-elements mb-10 h-10 w-[9%] rounded-md text-center">
+                    <Link className="flex items-center justify-center h-full pr-4" to="/">
+                        <div className="bg-back-arrow dark:invert bg-no-repeat bg-contain w-5 h-5 mx-3"></div>
+                        <p className="text-sm">Back</p>
+                    </Link>
                 </div>
-                <p>Border Countries: </p>
                 <div>
-                    {country.borders.map((border) => <div key={border}>{border}</div>)}
+                    <img src={country.flag} alt="flag" className="inline"/>
+                    <p className="font-bold">{country.name}</p>
+                    <div>
+                        <p><span>Native Name: </span>{country.nativeName}</p>
+                        <p><span>Population: </span>{country.population}</p>
+                        <p><span>Sub Region: </span>{country.subRegion}</p>
+                        <p><span>Capital: </span>{country.capital}</p>
+                        <p><span>Top Level Domain: </span>{country.topLevelDomain}</p>
+                        <p><span>Currencies: </span>{country.currencies.join(", ")}</p>
+                        <p><span>Languages: </span>{country.languages.join(", ")}</p>
+                    </div>
+                    <p>Border Countries: </p>
+                    <div className="flex justify-start items-center">
+                        {country.borders.map((border) => <div className="m-3" key={border}>{border}</div>)}
+                    </div>
                 </div>
             </div>
         </Layout>

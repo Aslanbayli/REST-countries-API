@@ -16,7 +16,8 @@ module.exports = {
       backgroundImage: {
         'moon-light': "url('/public/icons/moon-light.png')",
         'moon-dark': "url('/public/icons/moon-dark.png')",
-        'search': "url('/public/icons/search.png')"
+        'search': "url('/public/icons/search.png')",
+        'back-arrow': "url('/public/icons/left-arrow.png')"
       },
     },  
     fontFamily: {
