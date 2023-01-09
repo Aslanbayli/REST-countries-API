@@ -17,7 +17,8 @@ module.exports = {
         'moon-light': "url('/public/icons/moon-light.png')",
         'moon-dark': "url('/public/icons/moon-dark.png')",
         'search': "url('/public/icons/search.png')",
-        'back-arrow': "url('/public/icons/left-arrow.png')"
+        'back-arrow': "url('/public/icons/left-arrow.png')",
+        'x-mark': "url('/public/icons/x-mark.png')"
       },
     },  
     fontFamily: {

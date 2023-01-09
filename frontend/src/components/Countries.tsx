@@ -56,10 +56,10 @@ export default function Countries() {
             clearTimeout(timeoutRef.current);
         }
 
-        timeoutRef.current = setTimeout(() => fetchCountriesByName(v), 200);        
+        timeoutRef.current = setTimeout(() => fetchCountriesByName(v), 400);        
     }
 
-    function getAllCountries() {
+    const getAllCountries = () => {
         axios.get("https://restcountries.com/v3.1/all")
         .then(res => {
             setCountries(res.data);
@@ -73,8 +73,6 @@ export default function Countries() {
         setRegion(v);
         fetchCountriesByRegion(v);
     }
-
-
 
     return (
         <Layout>
