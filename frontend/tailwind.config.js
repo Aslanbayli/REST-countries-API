@@ -11,7 +11,7 @@ module.exports = {
         'very-dark-blue-text': "hsl(200, 15%, 8%)",
         'dark-gray-input': "hsl(0, 0%, 52%)",
         'very-light-gray-background': "hsl(0, 0%, 98%)",
-        'body-background': "hsl(0, 0%, 90%)"
+        'body-background': "hsl(0, 0%, 95%)"
       },
       backgroundImage: {
         'moon-light': "url('/public/icons/moon-light.png')",

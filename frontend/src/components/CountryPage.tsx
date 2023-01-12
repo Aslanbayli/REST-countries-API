@@ -59,27 +59,36 @@ export default function CountryPage() {
     return (
         <Layout>
             <div className="dark:text-white p-14 h-full">
-                <div className="table shadow-[0px_2px_4px_0px_rgba(0,0,0,0.2)] bg-white dark:bg-dark-blue-elements mb-10 h-10 w-[9%] rounded-md text-center">
+                <div className="table shadow-[0px_2px_4px_0px_rgba(0,0,0,0.2)] bg-white dark:bg-dark-blue-elements mb-20 h-10 w-[9%] rounded-md text-center">
                     <Link className="flex items-center justify-center h-full pr-4" to="/">
                         <div className="bg-back-arrow dark:invert bg-no-repeat bg-contain w-5 h-5 mx-3"></div>
                         <p className="text-sm">Back</p>
                     </Link>
                 </div>
-                <div>
-                    <img src={country.flag} alt="flag" className="inline"/>
-                    <p className="font-bold">{country.name}</p>
-                    <div>
-                        <p><span>Native Name: </span>{country.nativeName}</p>
-                        <p><span>Population: </span>{country.population}</p>
-                        <p><span>Sub Region: </span>{country.subRegion}</p>
-                        <p><span>Capital: </span>{country.capital}</p>
-                        <p><span>Top Level Domain: </span>{country.topLevelDomain}</p>
-                        <p><span>Currencies: </span>{country.currencies.join(", ")}</p>
-                        <p><span>Languages: </span>{country.languages.join(", ")}</p>
-                    </div>
-                    <p>Border Countries: </p>
-                    <div className="flex justify-start items-center">
-                        {country.borders.map((border) => <div className="m-3" key={border}>{border}</div>)}
+                <div className="flex w-full">
+                    <img src={country.flag} alt="flag" className="inline w-[500px]"/>
+                    <div className="ml-[10%] mt-7">
+                        <p className="font-bold text-3xl mb-7">{country.name}</p>
+                        <div className="flex">
+                            <div className="w-full">
+                                <p className="my-3"><span className="font-semibold">Native Name: </span>{country.nativeName}</p>
+                                <p className="my-3"><span className="font-semibold">Population: </span>{country.population}</p>
+                                <p className="my-3"><span className="font-semibold">Sub Region: </span>{country.subRegion}</p>
+                                <p className="my-3"><span className="font-semibold">Capital: </span>{country.capital}</p>
+                            </div>
+
+                            <div className="w-full">
+                                <p className="my-3"><span className="font-semibold">Top Level Domain: </span>{country.topLevelDomain}</p>
+                                <p className="my-3"><span className="font-semibold">Currencies: </span>{country.currencies.join(", ")}</p>
+                                <p className="my-3"><span className="font-semibold">Languages: </span>{country.languages.join(", ")}</p>
+                            </div>
+                        </div>
+                        <div className="flex mt-10 items-center">
+                            <p className="font-semibold mr-3">Border Countries: </p>
+                            <div className="flex justify-start items-center">
+                                {country.borders.map((border) => <div className="m-3 px-4 py-1 rounded-sm shadow-[0px_0px_10px_1px_rgba(0,0,0,0.25)]" key={border}>{border}</div>)}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

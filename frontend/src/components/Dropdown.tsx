@@ -13,7 +13,7 @@ export default function Dropdown({value, onChange}: DropwdownProps) {
   return (
     <div className="w-52 font-[600]">
       <Listbox defaultValue={regions[0]} onChange={(e: string) => onChange(e)}>
-        <div className="relative mt-1">
+        <div className="relative">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white dark:bg-dark-blue-elements dark:text-white py-4 pl-7 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
             <span className="block truncate">{value}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
