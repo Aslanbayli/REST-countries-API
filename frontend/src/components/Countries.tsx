@@ -6,11 +6,13 @@ import Dropdown from "./Dropdown";
 import CountryGrid from "./CountryGrid";
 import Layout from "./Layout";
 import { CountriesContext } from "../context/CountriesContext";
+import LoadingScreen from "./LoadingScreen";
 
 export default function Countries() {
     const [countryName, setCountryName] = useState("");
     const [region, setRegion] = useState("Filter By Region");
     const [countries, setCountries] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getAllCountries();
@@ -23,12 +25,14 @@ export default function Countries() {
         }
         axios.get(url)
             .then(res => {
-                setCountries(res.data);
                 console.log(url);
+                return setCountries(res.data);
             })
+            .then(() => setIsLoading(false))
             .catch(err => {
                 console.log(err);
             });
+        setIsLoading(false);
     }
 
 
@@ -39,12 +43,14 @@ export default function Countries() {
         }
         axios.get(url)
             .then(res => {
-                setCountries(res.data);
                 console.log(url);
+                return setCountries(res.data);
             })
+            .then(() => setIsLoading(false))
             .catch(err => {
                 console.log(err);
             });
+        
     }
 
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -62,8 +68,9 @@ export default function Countries() {
     const getAllCountries = () => {
         axios.get("https://restcountries.com/v3.1/all")
         .then(res => {
-            setCountries(res.data);
+            return setCountries(res.data);
         })
+        .then(() => setIsLoading(false))
         .catch(err => {
             console.log(err);
         });
@@ -76,15 +83,17 @@ export default function Countries() {
 
     return (
         <Layout>
-            <div>
-                <div className="flex justify-between py-[40px] px-[80px]" onLoadStart={getAllCountries}>
-                    <SearchBox value={countryName} onChange={handleSearchBoxChange}/>
-                    <Dropdown value={region} onChange={handleDropdownChange}/>
+            {isLoading ? <LoadingScreen /> : 
+                <div>
+                    <div className="flex justify-between py-[40px] px-[80px]" onLoadStart={getAllCountries}>
+                        <SearchBox value={countryName} onChange={handleSearchBoxChange}/>
+                        <Dropdown value={region} onChange={handleDropdownChange}/>
+                    </div>
+                    <CountriesContext.Provider value={{countries}}>
+                        <CountryGrid />
+                    </CountriesContext.Provider>
                 </div>
-                <CountriesContext.Provider value={{countries}}>
-                    <CountryGrid />
-                </CountriesContext.Provider>
-            </div>
+            }
         </Layout>
     );
 }
