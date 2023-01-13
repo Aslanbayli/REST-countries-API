@@ -8,7 +8,7 @@ type Country = {
     flag: any,
     name: string,
     nativeName: string,
-    population: number,
+    population: string,
     subRegion: string,
     capital: string,
     topLevelDomain: string
@@ -31,13 +31,13 @@ export default function CountryPage() {
             const country: Country = {
                 flag: res.data[0].flags.png,
                 name: res.data[0].name.common,
-                nativeName: Object.values<any>(res.data[0].name.nativeName)[0].common,
-                population: res.data[0].population,
-                subRegion: res.data[0].subregion,
-                capital: res.data[0].capital,
-                topLevelDomain: res.data[0].tld,
-                languages: Object.values(res.data[0].languages),
-                currencies: Object.values(res.data[0].currencies).map((currency: any) => currency.name),
+                nativeName: (res.data[0].name.nativeName) ? Object.values<any>(res.data[0].name.nativeName)[0].common : "unknown",
+                population: res.data[0].population ? res.data[0].population : "unknown",
+                subRegion: res.data[0].subregion ? res.data[0].subregion : "unknown",
+                capital: res.data[0].capital ? res.data[0].capital : "unknown",
+                topLevelDomain: res.data[0].tld ? res.data[0].tld : "unknown",
+                languages: res.data[0].languages ? Object.values(res.data[0].languages) : ["unknown"],
+                currencies: res.data[0].currencies ? Object.values(res.data[0].currencies).map((currency: any) => currency.name) : ["unknown"],
                 borders: []
             }
             if (res.data[0].borders) {
