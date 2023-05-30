@@ -27,9 +27,9 @@ Users should be able to:
 
 ### Screenshot
 
+![image](https://github.com/Aslanbayli/REST-countries-API/assets/48028559/3cde5245-d819-4d25-b179-bcaf5a4e25bf)
 
-
-## My process
+## Usage
 
 ### Built with
 
