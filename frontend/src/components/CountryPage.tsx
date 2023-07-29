@@ -60,7 +60,7 @@ export default function CountryPage() {
         <Layout>
             <div className="dark:text-white p-14 h-full">
                 <div className="table shadow-[0px_2px_4px_0px_rgba(0,0,0,0.2)] bg-white dark:bg-dark-blue-elements mb-20 h-10 w-[9%] rounded-md text-center">
-                    <Link className="flex items-center justify-center h-full pr-4" to="/">
+                    <Link className="flex items-center justify-center h-full pr-4 mt-2" to="/">
                         <div className="bg-back-arrow dark:invert bg-no-repeat bg-contain w-5 h-5 mx-3"></div>
                         <p className="text-sm">Back</p>
                     </Link>
