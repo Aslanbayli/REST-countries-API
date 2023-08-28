@@ -50,7 +50,8 @@ You should see the webpage open in your default browser.
 
 ### Navigate to details page by clicking on a country card
 
-![image](https://github.com/Aslanbayli/REST-countries-API/assets/48028559/2174fdcc-f021-48c1-a2f0-39f5476cb341)
+![image](https://github.com/Aslanbayli/REST-countries-API/assets/48028559/22abada6-7cf1-4000-9b5a-e337de67a5b0)
+
 
 ## Built with
 
